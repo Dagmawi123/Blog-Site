@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Site</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <!-- iconscout cdn -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+<!-- google fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <nav>
+        <div class="container nav_container">
+            <a href="/" class="nav_logo">BLOG</a>
+            <ul class="nav_items">
+                <li> <a href="./blog">Blog</a></li>
+                <li> <a href="about.html">About</a></li>
+                <li> <a href="services.html">Services</a></li>
+                <li> <a href="contact.html">Contact</a></li>
+                <li id="signLi"> <a href="HTML/signin.html">Sign In</a></li>
+                <li class ="nav_profile">
+                    <div class="avatar">
+                        <img src="<%=profile%>" alt="">
+                    </div>
+                    <ul>
+                        <li><a onclick="dash()" >Dashboard</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button id="open_nav-btn"><i class="uil uil-bars"></i></button>
+            <button id="close_nav-btn"><i class="uil uil-multiply"></i></button>
+        </div> 
+    </nav>
+    <!-- end  of the nav -->
+
+
+    <section class="featured">
+        <div class="container featured_container" >
+            <div class="post_thumbnail">
+            <img src="images/<%=featured.Thumbnail%>" alt="">
+            </div>
+            <div class="post_info">
+                <a href="/category?searchTitle=<%=featured.Category.Title%>" class="category_button"><%=featured.Category.Title%></a>
+                <h2 onclick="view('<%=featured._id%>')" class="post_title"><a ><%=featured.Title%></a></h2>
+           <p class="post_body"><%=featured.Body%></p>
+        <div class="post_author">
+             <div class="post_author-avatar">
+                <img src="images/<%=featured.Author.Avatar%>" alt="">
+             </div>
+             <div class="post_author-info">
+                <h5>By:<%=" "%><%=featured.Author.Fname+" " %> <%=featured.Author.Lname%></h5>
+                <small><%=featured.Date%></small>
+            </div>
+        </div>    
+        </div>
+        </div>
+    </section>
+
+
+    <!-- End of featured -->
+    <section class="posts">
+        <div class="container posts_container">
+            <% post.forEach(p=>{%>
+            <article class="post">
+    <div class="post_thumbnail">
+        <img src="images/<%= p.Thumbnail %> " alt="">
+    </div>
+    <div class="post_info">
+        <a href="/category?searchTitle=<%=p.Category.Title%>" class="category_button"><%= p.Category.Title %></a>
+        <h3 onclick="view('<%=p._id%>')" class="post_title"><a ><%=p.Title %></a></h3>
+    <p class="post_body">
+    <%=p.Body%> </p>
+    <div class="post_author">
+        <div class="post_author-avatar">
+            <img src='images/<%=p.Author.Avatar%>' alt="">
+        </div>
+    <div class="post_author-info">
+        <h5>By:<%=" "%><%=p.Author.Fname+" " %> <%=p.Author.Lname%></h5>
+        <small><%=p.Date%></small>
+    </div>
+    </div>
+    </div>
+            </article>
+            <%})%>
+        
+    
+        </div>
+    </section>
+
+
+<!-- end of posts -->
+
+<section class="category_buttons">
+    <div class="container category_buttons-container">
+<%cats.forEach(cat=>{%>
+        <a href="/blog?searchTitle=<%=cat.Title%>" class="category_button"><%=cat.Title%></a>
+        <%})%>
+</div>
+</section>
+<!-- end of category buttons -->
+
+
+<footer>
+    <div class="footer_socials">
+        <a href="https://youtube.com/realmadrid" target="_blank"><i class="uil uil-youtube"></i></a>
+        <a href="https://facebook.com/realmadrid" target="_blank"><i class="uil uil-facebook"></i></a>
+        <a href="https://instagram.com/realmadrid" target="_blank"><i class="uil uil-instagram"></i></a>
+        <a href="https://linkedin.com/realmadrid" target="_blank"><i class="uil uil-linkedin"></i></a>
+        <a href="https://twitter.com/realmadrid" target="_blank"><i class="uil uil-twitter"></i></a>
+
+    </div>
+    <div class="container footer_container">
+<article>
+    <h4>Categories</h4>
+    <ul>
+        <!-- <li><a href="">Art</a></li> -->
+      <%cats.forEach(cat=>{%>
+      <li><a href="/blog?searchTitle=<%=cat.Title%>"><%=cat.Title%></a></li>
+        <%})%>
+    </ul>
+</article>
+<article>
+    <h4>Support</h4>
+    <ul>
+        <li><a href="">Online Support</a></li>
+        <li><a href="">Call Numbers</a></li>
+        <li><a href="">Emails</a></li>
+        <li><a href="">Social Support</a></li>
+        <li><a href="">Location</a></li>
+    </ul>
+</article>
+<article>
+    <h4>Blog</h4>
+    <ul>
+        <li><a href="">Safety</a></li>
+        <li><a href="">Repair </a></li>
+        <li><a href="">Recent</a></li>
+        <li><a href="">Popular</a></li>
+        <li><a href="">Categories</a></li>
+    </ul>
+</article>
+<article>
+    <h4>Permalinks</h4>
+    <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Abou</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Contact</a></li>
+        
+    </ul>
+</article>
+    </div>
+<div class="footer_copyright">
+    <small>Copyright &copy;@2023 Realmadrid Football Club</small>
+</div>
+</footer>
+<script src="JS/main.js"></script>
+<script>
+  let profile='<%-profile%>'
+  if(profile){
+    document.getElementById('signLi').style.display='none';
+    document.getElementsByClassName("nav_profile")[0].style.display='block'
+  }
+function dash(){
+ 
+
+//     if(token){
+// var newForm=document.createElement('form')
+// newForm.action='/dashboard'
+// newForm.method='POST'
+// var newInput=document.createElement('input')
+// newInput.type='hidden'
+// newInput.name='UserToken'
+// newInput.value=token
+// newForm.appendChild(newInput)
+// document.body.appendChild(newForm)
+
+// newForm.submit()
+// }
+window.location.href='/dashboard'
+
+}
+function Blog(){
+//     if(token){
+// var newForm=document.createElement('form')
+// newForm.action='/blog'
+// newForm.method='post'
+// var newInput=document.createElement('input')
+// newInput.type='hidden'
+// newInput.name='UserToken'
+// newInput.value=token
+// newForm.appendChild(newInput)
+// document.body.appendChild(newForm)
+
+// newForm.submit()
+}
+// else
+// window.location.href='/blog'
+
+function view(id){
+ window.location.href='/blog/post/'+id
+ }
+</script>
+</body>
+</html>
