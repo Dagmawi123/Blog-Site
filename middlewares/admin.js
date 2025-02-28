@@ -1,4 +1,5 @@
 const jwt=require('jsonwebtoken')
+require('dotenv').config()
 module.exports=function(req,res,next){
 try{
     console.log('Checking if you are an admin...')
@@ -6,12 +7,12 @@ try{
     {
        return res.status(401).send('You are not allowed to perform this action') 
     }
-const user=jwt.verify(req.cookies.AuthToken,"myKey")
+const user=jwt.verify(req.cookies.AuthToken,process.env.Jwt_Secret)
 if(user.Admin){
   next()  
 }
 else
-return res.status(403).send('You are forbidden to perform this action') 
+return res.status(403).send('<h1>Sorry,You are forbidden to perform this action<h1>') 
 
 }
 catch(ex){

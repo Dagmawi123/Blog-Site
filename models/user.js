@@ -12,7 +12,8 @@ const userSchema=new mongoose.Schema({
   isAdmin:{type:Boolean,default:false}
 })
 userSchema.methods.genToken=function(){
-  const token=JWT.sign({_id:this._id,Admin:this.isAdmin},"myKey")
+  console.log("Have ur secret key! "+process.env.Jwt_Secret);
+  const token=JWT.sign({_id:this._id,Admin:this.isAdmin},process.env.Jwt_Secret)
   return token
 }
 const User=mongoose.model('User',userSchema)

@@ -99,11 +99,11 @@
 
 <footer>
     <div class="footer_socials">
-        <a href="https://youtube.com/realmadrid" target="_blank"><i class="uil uil-youtube"></i></a>
-        <a href="https://facebook.com/realmadrid" target="_blank"><i class="uil uil-facebook"></i></a>
-        <a href="https://instagram.com/realmadrid" target="_blank"><i class="uil uil-instagram"></i></a>
-        <a href="https://linkedin.com/realmadrid" target="_blank"><i class="uil uil-linkedin"></i></a>
-        <a href="https://twitter.com/realmadrid" target="_blank"><i class="uil uil-twitter"></i></a>
+        <a href="https://youtube.com/OurBlog" target="_blank"><i class="uil uil-youtube"></i></a>
+        <a href="https://facebook.com/OurBlog" target="_blank"><i class="uil uil-facebook"></i></a>
+        <a href="https://instagram.com/OurBlog" target="_blank"><i class="uil uil-instagram"></i></a>
+        <a href="https://linkedin.com/OurBlog" target="_blank"><i class="uil uil-linkedin"></i></a>
+        <a href="https://twitter.com/OurBlog" target="_blank"><i class="uil uil-twitter"></i></a>
 
     </div>
     <div class="container footer_container">
@@ -151,95 +151,21 @@
 </article>
     </div>
 <div class="footer_copyright">
-    <small>Copyright &copy;@2023 Realmadrid Football Club</small>
+    <small>Copyright &copy;@2023 OurBlog Football Club</small>
 </div>
 </footer>
 <script>
-   var form =document.querySelector('form')
-//     document.addEventListener('load',()=>{      
-
-//    var article= document.createElement('article')
-//    article.classList.add('post')
-//    var divPostThumb=document.createElement('div')
-//    divPostThumb.classList.add("post_thumbnail")
-//    var img=document.createElement('img')
-// //    img.classList.add('')
-//    img.src=post[i].Thumbnail
-//    divPostThumb.appendChild(img)
-//    article.appendChild(divPostThumb)
-//    var postInfo=document.createElement('div')
-//    postInfo.classList.add('post_info')
-// var aCat=document.createElement('a')
-// aCat.classList.add('category_button')
-// aCat.textContent=post[i].Category.Title
-// postInfo.appendChild(aCat)
-// var h3=document.createElement('h3')
-// h3.classList.add('post_title')
-// var aTit=document.createElement('a')
-// aTit.textContent=post[i].Title
-// h3.appendChild(aTit)
-// postInfo.appendChild(h3)
-// var p=document.createElement('p')
-// p.classList.add("post_body")
-// p.textContent=post[i].Body
-// postInfo.appendChild(p)
-// var post_author=document.createElement('div')
-// post_author.classList.add('post_author')
-// var post_author_avatar=document.createElement('div')
-// post_author_avatar.classList.add('post_author-avatar')
-// var imgAut=document.createElement('img')
-// imgAut.src="images/"+post[i].Author.Avatar
-// post_author_avatar.appendChild(imgAut)
-// post_author.appendChild(post_author_avatar)
-// var post_author_info=document.createElement('div')
-// post_author_info.classList.add('post_author-info')
-// var h5=document.createElement('h5')
-// h5.textContent="By:"+post[i].Author.Fname+" "+post[i].Author.Lname
-// post_author_info.appendChild(h5)
-// var small=document.createElement('small')
-// small.textContent=post[i].Date
-// post_author_info.appendChild(small)
-// post_author.appendChild(post_author_info)
-// postInfo.appendChild(post_author)
-// article.appendChild(postInfo)
-// var container=document.getElementsByClassName('posts_container')[0]
-// container.appendChild(article)
-
-//     }
-    // )
+   var form =document.querySelector('form') 
    function view(id){
  window.location.href='/blog/post/'+id
-//     if(token)
-//     {var newForm=document.createElement('form')
-// newForm.action='/blog/post/'+id
-// newForm.method='POST'
-// var newInput=document.createElement('input')
-// newInput.type='hidden'
-// newInput.name='UserToken'
-// newInput.value=token
-// newForm.appendChild(newInput)
-// document.body.appendChild(newForm)
-
-// newForm.submit()}
-//     else window.location.href='/blog/post/'+id
-   }
+ }
 
    form.addEventListener('submit',(e)=>{
 e.preventDefault()
 const key=document.getElementsByName('Search')[0].value
 window.location.href='/blog?searchTerm='+key
 
-// fetch('/blog/'+key,{
-// method:'get',
-// headers:{"Content-Type":'application/json'},
-// // body:JSON.stringify(data)
-// }).then(response=>{
-//     if(response.status==200){
-//     // console.log("Successful Deletion");
-//     // window.location.reload()
-//     }
-// })
-   })
+  })
 
 </script>
 <!-- <script src="main.js"></script> -->

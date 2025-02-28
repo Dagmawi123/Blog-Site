@@ -1,95 +1,86 @@
 <!DOCTYPE html>
-<html> 
-    <link rel="stylesheet" href="../CSS/style.css">
-    <!-- google fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet"> 
-    <body>
-<section class="form_section">
-    <div class="container form_section-container">
-<h2>Sign Up</h2>
-<div class="alert_message error">
-    <p id="err">This is an error message.</p>
-</div>
-<form id="signup" method="post" enctype="multipart/form-data">
-    <input type="text" name="Fname" placeholder="First Name">
-    <input type="text" name="Lname" placeholder="Last Name">
-    <input type="text" name="Uname" placeholder="Username">
-    <input type="email" name="Email" placeholder="Email">
-    <input type="password" name="Password" placeholder="Create Password">
-    <input type="password" placeholder="Confirm Password">
-<div class="form_control">
-    <label for="avatar">User Avatar</label>
-<input type="file" id="" name="Avatar" id="avatar">
-</div>
-<button type="submit" class="btn">Sign Up</button>
-<small>Already have an account?<a href="signin.html">Sign In</a></small>
+<html>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <!-- google fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mooli&display=swap"
+    rel="stylesheet"
+  />
+  <body>
+    <section class="form_section">
+      <div class="container form_section-container">
+        <h2>Sign Up</h2>
+        <div class="alert_message error">
+          <p id="err">This is an error message.</p>
+        </div>
+        <form id="signup" method="post" enctype="multipart/form-data">
+          <input type="text" name="Fname" placeholder="First Name" />
+          <input type="text" name="Lname" placeholder="Last Name" />
+          <input type="text" name="Uname" placeholder="Username" />
+          <input type="email" name="Email" placeholder="Email" />
+          <input
+            type="password"
+            name="Password"
+            placeholder="Create Password"
+          />
+          <input type="password" placeholder="Confirm Password" />
+          <div class="form_control">
+            <label for="avatar">User Avatar</label>
+            <input type="file" id="" name="Avatar" id="avatar" />
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+          <small
+            >Already have an account?<a href="signin.html">Sign In</a></small
+          >
+        </form>
+        <script>
+          var userToken = "";
+          const formEl = document.querySelector("#signup");
+          formEl.addEventListener("submit", (event) => {
+          const pwd = document.querySelectorAll('input[type="password"]')[0];
+          const pwd2 = document.querySelectorAll('input[type="password"]')[1];
+            event.preventDefault();
+            if (pwd.value != pwd2.value) {
+              document.querySelector(".alert_message").style.display = "block";
+              document.querySelector("#err").textContent =
+                "Please type matching passwords";
+              return;
+            }
 
-</form>
-<script>
-    var userToken=''
-    const pwd=document.querySelectorAll('input[type="password"]')[0]
-    const pwd2=document.querySelectorAll('input[type="password"]')[1]
-      const formEl=document.querySelector("#signup")
-    formEl.addEventListener('submit',(event)=>{ 
-        event.preventDefault();
-        if(pwd.value!=pwd2.value){
-            document.querySelector('.alert_message').style.display='block'    
-        document.querySelector('#err').textContent="Please type matching passwords"
-        return
-    }
-   
-    const formData=new FormData(formEl)
-    const data=Object.fromEntries(formData)
-    data.Avatar=data.Avatar.name
-    if(!data.Avatar){
-        delete data.Avatar
-    }
-    // console.log(data)
-    
+            const formData = new FormData(formEl);
+            const data = Object.fromEntries(formData);
+            data.Avatar = data.Avatar.name;
+            if (!data.Avatar) {
+              delete data.Avatar;
+            }
+            // console.log(data)
 
-fetch('/api/users/signup',{
-method:'POST',
-headers:{"Content-Type":'application/json'},
-body:JSON.stringify(data)
-}).then(response=>{console.log("Successful");
-if(response.status==200){alert("Wowza")
-
-window.location.href='../'
-// req.header('x-token')=res.header('x-token')//
-// userToken=response.headers.get('x-token')
-// var newForm=document.createElement('form')
-// newForm.action='../'
-// newForm.method='POST'
-// var newInput=document.createElement('input')
-// newInput.type='hidden'
-// newInput.name='token'
-// newInput.value=userToken
-// newForm.appendChild(newInput)
-// document.body.appendChild(newForm)
-
-// newForm.submit()
-}
-else if(response.status==400) return response.text()
-}).then(text=>{ 
-document.querySelector('.alert_message').style.display='block'    
-if(text)
-document.querySelector('#err').textContent=text
-else
-document.querySelector('#err').textContent="User Registered Successfully"
-}).catch((reject)=>{
-    console.log("Failure"+reject.message);
-})
-})
-</script>
-
-
-
-
-
-
-
-    </div>
-</section>
-</body>
-<!-- <script src="main.js" defer></script> -->
+            fetch("/users/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            })
+              .then((response) => {
+                console.log("Successful");
+                if (response.status == 200) {
+                  window.location.href = "../";
+                } else if (response.status == 400) return response.text();
+              })
+              .then((text) => {
+                document.querySelector(".alert_message").style.display =
+                  "block";
+                if (text) document.querySelector("#err").textContent = text;
+                else
+                  document.querySelector("#err").textContent =
+                    "User Registered Successfully";
+              })
+              .catch((reject) => {
+                console.log("Failure" + reject.message);
+              });
+          });
+        </script>
+      </div>
+    </section>
+  </body>
+  <!-- <script src="main.js" defer></script> -->
 </html>

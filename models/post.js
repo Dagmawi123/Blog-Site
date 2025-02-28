@@ -48,7 +48,6 @@ function validatePost(post){
         isFeatured:Joi.boolean(),
         Thumbnail:Joi.string(),
         Date:Joi.date()
-        // AuthorId:Joi.string().required()
        }
    return Joi.validate(post,Schema)
   }

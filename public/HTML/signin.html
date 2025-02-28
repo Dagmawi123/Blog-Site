@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="../CSS/style.css">
     <!-- google fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet"> 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <body>
 <section class="form_section">
     <div class="container form_section-container">
@@ -17,47 +18,41 @@
 <small>Don't have an account?<a href="signup.html">Sign Up</a></small>
 
 </form>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+></script>
 <script>
+    // const axios=require('axios')
     const form=document.querySelector('#form1')
     form.addEventListener('submit',(e)=>{
     e.preventDefault()
     const formData=new FormData(form)
     const data=Object.fromEntries(formData)
     // console.log("Body to be sent: ",data);
-    fetch('../blog.com/api/users/signin',
-    {
-method:'POST',
-headers:{"Content-Type":'application/json'},
-body:JSON.stringify(data)
-}).then(response=>{
-    // console.log("Thanks for watching!Subscribe");
-if(response.status==200){
-  var userToken=response.headers.get('x-token')
-var newForm=document.createElement('form')
-newForm.action='../'
-newForm.method='POST'
-var newInput=document.createElement('input')
-newInput.type='hidden'
-newInput.name='token'
-newInput.value=userToken
-newForm.appendChild(newInput)
-document.body.appendChild(newForm)
-const token = document.cookie.split('; ').find(row => row.startsWith('AuthToken=')).split('=')[1];
-console.log("response 200"+ token);
-window.location.href='../'
-// newForm.submit()
-}else if(response.status==400) return response.text()
-}).then(text=>{ 
-document.querySelector('.alert_message').style.display='block'    
-if(text)
-document.querySelector('#err').textContent=text
-else
-document.querySelector('#err').textContent="User Logged Successfully"
+    axios.post('../users/signin',data).then(response=>{ 
+        if(response.status===200){  
+            document.querySelector('#err').textContent="User Logged Successfully"
+            window.location.href='../'
+            }
+   
+        
 }).catch(err=>{
-    console.log("Error! "+err.message);
-})
-    })
+   if(err.response.status===400){
 
+                document.querySelector('.alert_message').style.display='block'   
+    document.querySelector('#err').textContent="Invalid Email or Password" 
+        
+   }
+   else if(err.response.status===500){
+    
+    document.querySelector('.alert_message').style.display='block'   
+    document.querySelector('#err').textContent="An Internal Sever Error Sorry" }
+
+})
+}) 
 </script>
     </div>
 </section>
